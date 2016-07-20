@@ -1,54 +1,91 @@
+(function(){
+
+  'use strict';
 /*
-Envolva todo o código desse desafio em uma IIFE.
-Crie um arquivo chamado index.html e adicione esse script ao HTML.
+1. Envolva todo o conteúdo desse desafio em uma IIFE.
+2. Adicione a diretiva 'use strict';
+3. Crie um arquivo index.html e adicione esse script à ele.
 */
 
 /*
-Crie uma função construtora chamada "Person". Esse construtor deve ter
-as seguintes características:
-- Deve receber 3 parâmetros: `name`, `lastName` e `age`;
-- Deverá ter 3 propriedades:
-  - `name` - que receberá o valor do parâmetro `name`;
-  - `lastName` - que receberá o valor do parâmetro `lastName`;
-  - `age` - que receberá o valor do parâmetro `age`;
-- Deverá ter 3 métodos:
-  - `getFullName` - que deve retornar o nome completo do objeto criado,
-  no formato:
-    - "[NAME] [LASTNAME]"
-  - `getAge` - que deverá retornar a idade (age);
-  - `addAge` - esse método não deverá ter nenhum parâmetro, mas ao invocá-lo
-  iremos passar um único argumento, que é a quantidade de anos que devem ser
-  adicionados à idade original (age). Esse método deverá retornar o objeto
-  que será instanciado.
+Declare uma variável chamada `name` que receba seu primeiro nome.
+Mostre no console todas as letras do seu nome separadas, com a frase:
+- "[LETRA] é a [POSIÇÃO]ª letra do meu nome."
+Ex: no caso do nome ser "Fernando", deve mostrar as frases:
+- "F é a 1ª letra do meu nome."
+- "e é a 2ª letra do meu nome."
+E assim por diante, até a última.
 */
-// ?
+console.log( 'As letras do seu nome:' );
+var name = 'Tiago';
+for (var i = 0, len = name.length; i < len; i++) {
+  console.log(name.charAt(i) + ' é a '+ (i + 1) +'ª letra do meu nome.');  
+}
 
 /*
-Crie 3 novos objetos usando o construtor acima. Os objetos serão novas
-pessoas. As variáveis deverão ser o primeiro nome da pessoa. Passe os
-parâmetros corretamente para o construtor para criar as novas pessoas.
-Mostre as 3 novas pessoas criadas no console (Um console.log por pessoa).
+- Declare uma variável chamada `fullName`, que receba seu nome completo,
+escrito no formato de slug (caixa baixa e palavras separadas por um traço).
+Ex: o nome "Fernando Daciuk" ficaria "fernando-daciuk"
+- Faça a primeira letra de cada nome ficar em caixa alta, e troque o traço
+por um espaço.
+- Detalhe: o código que você escrever abaixo deve funcionar para qualquer
+nome, então fique à vontade para usar as artimanhas que já viu até agora no
+curso para fazer isso funcionar corretamente :)
+- Mostre no console o nome no formato slug, e o resultado final. Use um
+console.log para cada formato.
 */
-console.log( 'Novas pessoas criadas à partir de Person:' );
-// ?
+console.log( '\nNome convertido à partir de um slug:' );
+var fullName = 'tiago-michel-silva-nunes';
+console.log( fullName.split( '-' ).map(function( name ){
+   return name.charAt(0).toUpperCase() + name.slice(1); 
+  }).join(' ')
+ );
 
 /*
-Mostre no console o nome completo de cada pessoa.
+- Crie um array com 5 nomes. Reduza esses nomes a uma única string, separando
+cada nome por vírgula. Entre o penúltimo e o último nome, o separador deve
+ser um "e". No final, concatene com a frase: " são meus amigos.".
+O resultado final deve ficar mais ou menos assim:
+- "João, Maria, Roberto, Pedro e Marcos são meus amigos."
+- Detalhe: o código abaixo deve funcionar com um array de qualquer tamanho.
+5 nomes foi somente uma sugestão ;)
 */
-console.log( '\nNomes das pessoas:' );
-// ?
+console.log( '\nMeus amigos:' );
+var amigos = ['Mara', 'Celia', 'Cosme', 'Giselia', 'Michele'];  
+var reduceAmigos = amigos.reduce(function(acumulado,atual,index){
+  var _separador = amigos.length - 1 !== index ? ', ': ' e ';
+  return acumulado + _separador + atual;
+}).concat(' são meus amigos.');
+
+console.log(reduceAmigos);
+/*
+Usando o replace(), faça a string "Roberto" virar "Roberta".
+Mostre o resultado no console.
+*/
+console.log( '\nEra "Roberto", agora é:' );
+console.log('Roberto'.replace('to', 'ta'));
 
 /*
-Mostre no console as idades de cada pessoa, com a frase:
-- "[NOME COMPLETO] tem [IDADE] anos."
+Mostre no console a parte "nando" da string "Fernando". Use o método que
+faz a busca do final para o início da string.
 */
-console.log( '\nIdade das pessoas:' );
-// ?
+console.log( '\nParte de uma string:' );
+console.log('Fernando'.substring(8,3));
 
 /*
-Adicione alguns anos à cada pessoa, e mostre no console a nova idade de
-cada um. A frase deverá ser no formato:
-- "[NOME COMPLETO] agora tem [NOVA IDADE] anos."
+Declare uma variável chamada `myName`, que receba o seu primeiro nome,
+escrito de forma natural.
+Mostre no console esse nome, mas com as letras intercalando entre maiúsculas
+e minúsculas.
+- Detalhe: o código abaixo deve funcionar da mesma forma para qualquer nome,
+de qualquer tamanho, escrito de qualquer forma.
+Ex.: Nomes que deveriam funcionar: "Fernando", "RoBertO", "gabriEla", etc.
 */
-console.log( '\nNova idade das pessoas:' );
-// ?
+console.log( '\nNome com letras intercaladas entre caixa alta e baixa:' );
+var myName = 'Tiago';
+console.log(myName.split('').map(function(letra,index){
+  return index % 2 === 0 ? letra.toUpperCase() : letra.toLowerCase();
+}).join(''));
+
+
+})();
